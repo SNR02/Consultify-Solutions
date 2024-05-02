@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultify Solutions</title>
+    <link rel="icon" href="assets/logo1.png" type="image/x-icon">
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- =============== Navigation ================ -->
+    <div class="main-container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <img src="assets/main-logo2.png" alt="" class="main-logo">
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="loadContent('1')">
+                        <span class="icon">
+                            <ion-icon name="home"></ion-icon>
+                        </span>
+                        <span class="title">Home</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" onclick="loadContent('2')">
+                        <span class="icon">
+                            <ion-icon name="person-add-outline"></ion-icon>
+                        </span>
+                        <span class="title">Add Consultant</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" onclick="loadContent('3')">
+                        <span class="icon">
+                            <ion-icon name="people-outline"></ion-icon>
+                        </span>
+                        <span class="title">View Users</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" onclick="loadContent('4')">
+                        <span class="icon">
+                            <ion-icon name="people-circle-outline"></ion-icon>
+                        </span>
+                        <span class="title">View Consultants</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" onclick="loadContent('5')">
+                        <span class="icon">
+                            <ion-icon name="ticket-outline"></ion-icon>
+                        </span>
+                        <span class="title">Tickets</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" th:href="@{/logout}" onclick="signOut()">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ========================= Main ==================== -->
+        
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+            </div>
+
+            <!-- ======================= Cards ================== -->
+            <div class="cardBox">
+                <div class="cards">
+                    <div>
+                        <div class="numbers">80</div>
+                        <div class="cardName">Consultants</div>
+                    </div>
+
+                    <div class="iconBx">
+                        <img src="assets/customer-service.png" alt="">
+                    </div>
+                </div>
+
+                <div class="cards">
+                    <div>
+                        <div class="numbers">1,504</div>
+                        <div class="cardName">Users</div>
+                    </div>
+
+                    <div class="iconBx">
+                        <img src="assets/user.png" alt="">
+                    </div>
+                </div>
+
+                <div class="cards">
+                    <div>
+                        <div class="numbers">45</div>
+                        <div class="cardName">Ticekts Open</div>
+                    </div>
+
+                    <div class="iconBx">
+                        <img src="assets/ticket-open.png" alt="">
+                    </div>
+                </div>
+
+                <div class="cards">
+                    <div>
+                        <div class="numbers">12</div>
+                        <div class="cardName">Tickets Resolved</div>
+                    </div>
+
+                    <div class="iconBx">
+                        <img src="assets/ticket-resolved.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================ Order Details List ================= -->
+            <div class="details">
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>Updates</h2>
+                        <a href="#" class="btn" id="view-all">View All</a>
+                    </div>
+
+                    <table>
+                        <thead>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Surya</td>
+                                <td>Consultant</td>
+                                <td>Finance</td>
+                                <td><span class="status delivered">Added</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>Ticket543</td>
+                                <td>Shaman</td>
+                                <td>Business</td>
+                                <td><span class="status pending">Progress</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>Ticket432</td>
+                                <td>Venky</td>
+                                <td>Marketing</td>
+                                <td><span class="status return">Hold</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>Ticket675</td>
+                                <td>Veera</td>
+                                <td>Education</td>
+                                <td><span class="status inProgress">Assigned</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>Ticket547</td>
+                                <td>Uday</td>
+                                <td>Business</td>
+                                <td><span class="status delivered">Closed</span></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="add-consultant intialHide">
+            <div class="container-fluid" >
+                <div class="topbar">
+                    <div class="toggle">
+                        <ion-icon name="menu-outline"></ion-icon>
+                    </div>
+                </div>
+                <div class="row col-md-8 offset-md-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="text-center">Add Consultant</h2>
+                        </div>
+                        <div th:if="${param.success}">
+                            <div class="alert alert-info">
+                                Consultant added successfully!
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form
+                                    method="post"
+                                    role="form"
+                                    th:action="@{/register/save}"
+                                    th:object="${user}"
+                            >
+                                <div class="form-group mb-3">
+                                    <label class="form-label">First Name</label>
+                                    <input
+                                            class="form-control"
+                                            id="firstName"
+                                            name="firstName"
+                                            placeholder="Enter first name"
+                                            th:field="*{firstName}"
+                                            type="text"
+                                    />
+                                    <p th:errors = "*{firstName}" class="text-danger"
+                                       th:if="${#fields.hasErrors('firstName')}"></p>
+                                </div>
+            
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Last Name</label>
+                                    <input
+                                            class="form-control"
+                                            id="lastName"
+                                            name="lastName"
+                                            placeholder="Enter last name"
+                                            th:field="*{lastName}"
+                                            type="text"
+                                    />
+                                    <p th:errors = "*{lastName}" class="text-danger"
+                                       th:if="${#fields.hasErrors('lastName')}"></p>
+                                </div>
+            
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input
+                                            class="form-control"
+                                            id="email"
+                                            name="email"
+                                            placeholder="Enter email address"
+                                            th:field="*{email}"
+                                            type="email"
+                                    />
+                                    <p th:errors = "*{email}" class="text-danger"
+                                       th:if="${#fields.hasErrors('email')}"></p>
+                                </div>
+                                 <div class="form-group mb-3">
+                                    <label class="form-label">Domain</label>
+                                    <input list="domain"
+                                            class="form-control"
+                                            name="domain"
+                                            placeholder="Enter domain"
+                                            th:field="*{domain}"
+                                    >
+                                    <datalist id="domain">
+                                    <option value="Finance"></option>
+                                    <option value="Business"></option>
+                                    <option value="Marketing"></option>
+                                    <option value="IT"></option>
+                                    <option value="Education"></option>
+                                    </datalist>
+                                    <p th:errors = "*{domain}" class="text-danger"
+                                       th:if="${#fields.hasErrors('domain')}"></p>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Password</label>
+                                    <input
+                                            class="form-control"
+                                            id="password"
+                                            name="password"
+                                            placeholder="Enter password"
+                                            th:field="*{password}"
+                                            type="password"
+                                    />
+                                    <p th:errors = "*{password}" class="text-danger"
+                                       th:if="${#fields.hasErrors('password')}"></p>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary" type="submit">Add Consultant</button>
+                                    <span> <a th:href="@{/admin_page}">Cancel</a></span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="view-users intialHide">
+            <div class="container-fluid" >
+                <div class="topbar">
+                    <div class="toggle">
+                        <ion-icon name="menu-outline"></ion-icon>
+                    </div>
+                </div>
+                <div class="row " >
+                    <h1 class="text-center"> Users </h1>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Username</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user: ${users}">
+                        <td th:text="${user.firstName}"></td>
+                        <td th:text="${user.lastName}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td>
+                            <a class="btn btn-secondary"  th:href="@{/delete/{userid}(userid=${user.email})}">Delete</a>
+                        </td>
+                    </tr>
+                    <!-- dummy data  -->
+                    <tr>
+                        <td>Venkatesh</td>
+                        <td>Pothuraju</td>
+                        <td>vp@gmail.com</td>
+                        <td>
+                            <a class="btn btn-secondary" href="/delete/vp@gmail.com">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Alice</td>
+                        <td>Johnson</td>
+                        <td>alicejohnson@gmail.com</td>
+                        <td>
+                            <a class="btn btn-secondary" href="/delete/alicejohnson@gmail.com">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bob</td>
+                        <td>Smith</td>
+                        <td>bobsmith@gmail.com</td>
+                        <td>
+                            <a class="btn btn-secondary" href="/delete/bobsmith@gmail.com">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Emily</td>
+                        <td>Williams</td>
+                        <td>emilywilliams@gmail.com</td>
+                        <td>
+                            <a class="btn btn-secondary" href="/delete/emilywilliams@gmail.com">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>David</td>
+                        <td>Miller</td>
+                        <td>davidmiller@gmail.com</td>
+                        <td>
+                            <a class="btn btn-secondary" href="/delete/davidmiller@gmail.com">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Lisa</td>
+                        <td>Anderson</td>
+                        <td>lisaanderson@gmail.com</td>
+                        <td>
+                            <a class="btn btn-secondary" href="/delete/lisaanderson@gmail.com">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Michael</td>
+                        <td>Jones</td>
+                        <td>michaeljones@gmail.com</td>
+                        <td>
+                            <a class="btn btn-secondary" href="/delete/michaeljones@gmail.com">Delete</a>
+                        </td>
+                    </tr>                    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="view-consultants intialHide">
+            <div class="container-fluid" >
+                <div class="topbar">
+                    <div class="toggle">
+                        <ion-icon name="menu-outline"></ion-icon>
+                    </div>
+                </div>
+                <div class="row " >
+                    <h1 class="text-center"> Consultants </h1>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Username</th>
+                        <th>Domain</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="consultant: ${consultants}">
+                        <td th:text="${consultant.firstName}"></td>
+                        <td th:text="${consultant.lastName}"></td>
+                        <td th:text="${consultant.email}"></td>
+                        <td th:text="${consultant.domain}"></td>
+                        <td>
+                            <a class="btn btn-secondary"  th:href="@{/delete/{userid}(userid=${consultant.email})}">Delete</a>
+                        </td>
+                    </tr>
+                    <!-- Dummy data -->
+                    <tr>
+                        <td>Jaya</td>
+                        <td>Surya</td>
+                        <td>js@gmail.com</td>
+                        <td>IT</td>
+                        <td>
+                            <a class="btn btn-secondary" href="/delete/js@gmail.com">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>johndoe@gmail.com</td>
+                        <td>Finance</td>
+                        <td>
+                            <a class="btn btn-secondary" href="/delete/johndoe@gmail.com">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Emma</td>
+                        <td>Smith</td>
+                        <td>emmasmith@gmail.com</td>
+                        <td>Business</td>
+                        <td>
+                            <a class="btn btn-secondary" href="/delete/emmasmith@gmail.com">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Michael</td>
+                        <td>Johnson</td>
+                        <td>michaeljohnson@gmail.com</td>
+                        <td>Technology</td>
+                        <td>
+                            <a class="btn btn-secondary" href="/delete/michaeljohnson@gmail.com">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sara</td>
+                        <td>Miller</td>
+                        <td>saramiller@gmail.com</td>
+                        <td>Ecommerce</td>
+                        <td>
+                            <a class="btn btn-secondary" href="/delete/saramiller@gmail.com">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>David</td>
+                        <td>Williams</td>
+                        <td>davidwilliams@gmail.com</td>
+                        <td>Banking</td>
+                        <td>
+                            <a class="btn btn-secondary" href="/delete/davidwilliams@gmail.com">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Lisa</td>
+                        <td>Anderson</td>
+                        <td>lisaanderson@gmail.com</td>
+                        <td>Manufacturing</td>
+                        <td>
+                            <a class="btn btn-secondary" href="/delete/lisaanderson@gmail.com">Delete</a>
+                        </td>
+                    </tr>
+                    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="view-tickets intialHide">
+            <div class="container-fluid" >
+                <div class="topbar">
+                    <div class="toggle">
+                        <ion-icon name="menu-outline"></ion-icon>
+                    </div>
+                </div>
+                <div class="row " >
+                    <h1 class="text-center"> Tickets </h1>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Client</th>
+                        <th>Consultant</th>
+                        <th>Title</th>
+                        <th>Domain</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="ticket: ${alltickets}">
+                        <td th:text="${ticket.senderId}"></td>
+                        <td th:text="${ticket.recipientId}"></td>
+                        <td th:text="${ticket.title}"></td>
+                        <td th:text="${ticket.domain}"></td>
+                        <td th:text="${ticket.description}"></td>
+                        <td th:text="${ticket.status}"></td>
+                        <td>
+                            <a class="btn" th:href="@{/deleteticket/{ticketid}(ticketid=${ticket.id})}">Delete</a>
+                            <a class="btn" th:href="@{/update/{ticketid}(ticketid=${ticket.id})}">Update</a>
+                        </td>
+                    </tr>
+                    <!-- dummy data  -->
+                    <tr>
+                        <td>1001</td>
+                        <td>2001</td>
+                        <td>Issue with Payment Gateway</td>
+                        <td>Finance</td>
+                        <td>Customers are unable to complete transactions.</td>
+                        <td>Open</td>
+                        <td>
+                            <a class="btn" href="/deleteticket/1001">Delete</a>
+                            <a class="btn" href="/update/1001">Update</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1002</td>
+                        <td>2002</td>
+                        <td>Network Connectivity Problem</td>
+                        <td>Technology</td>
+                        <td>Users are experiencing intermittent connection issues.</td>
+                        <td>In Progress</td>
+                        <td>
+                            <a class="btn" href="/deleteticket/1002">Delete</a>
+                            <a class="btn" href="/update/1002">Update</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1003</td>
+                        <td>2003</td>
+                        <td>Product Order Delay</td>
+                        <td>Ecommerce</td>
+                        <td>Orders are taking longer than expected to process.</td>
+                        <td>Closed</td>
+                        <td>
+                            <a class="btn" href="/deleteticket/1003">Delete</a>
+                            <a class="btn" href="/update/1003">Update</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1004</td>
+                        <td>2004</td>
+                        <td>Account Login Issue</td>
+                        <td>IT</td>
+                        <td>Users are unable to log in to their accounts.</td>
+                        <td>Open</td>
+                        <td>
+                            <a class="btn" href="/deleteticket/1004">Delete</a>
+                            <a class="btn" href="/update/1004">Update</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1005</td>
+                        <td>2005</td>
+                        <td>Payment Dispute</td>
+                        <td>Finance</td>
+                        <td>Customer claims unauthorized charges on their account.</td>
+                        <td>Resolved</td>
+                        <td>
+                            <a class="btn" href="/deleteticket/1005">Delete</a>
+                            <a class="btn" href="/update/1005">Update</a>
+                        </td>
+                    </tr>
+                    
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========== Scripts =========  -->
+
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+        let list = document.querySelectorAll(".navigation li");
+
+        function activeLink() {
+        list.forEach((item) => {
+            item.classList.remove("hovered");
+        });
+        this.classList.add("hovered");
+        }
+
+        list.forEach((item) => item.addEventListener("mouseover", activeLink));
+
+        // Menu Toggle
+        let toggle = document.querySelectorAll(".toggle");
+        let navigation = document.querySelector(".navigation");
+        let main = document.querySelector(".main");
+
+        toggle.forEach((ele) => (ele.addEventListener("click",() => toggling(ele)))); 
+        function toggling(ele) {
+            // navigation.classList.toggle("active");
+            if(ele.parentElement.parentElement.classList.contains("main")){
+                navigation.classList.toggle("active");
+                if(navigation.classList.contains("active")){
+                    main.classList.add("active");
+                }
+                else{
+                    main.classList.remove("active");
+                }
+            }
+            else{
+                // navigation.classList.remove("active");
+                const remainPages = document.querySelectorAll(".intialHide");
+                remainPages.forEach(page => {
+                    if(page.style.display == "block"){
+                        navigation.classList.toggle("active");
+                        if(navigation.classList.contains("active")){
+                            page.classList.add("active");
+                        }
+                        else{
+                            page.classList.remove("active");
+                        }
+                    }
+                    else{
+                        page.classList.remove("active");
+                    }
+                })
+            }
+        };
+
+        const viewAllBtn = document.getElementById("view-all");
+        const updatesDiv = document.querySelector(".recentOrders");
+        viewAllBtn.addEventListener("click",()=>{
+            const btnText = viewAllBtn.innerHTML;
+            if(btnText == "View All"){
+                updatesDiv.style.overflowY = "auto";
+                viewAllBtn.innerHTML = "View Recent"
+            }
+            else if(btnText == "View Recent"){
+                updatesDiv.style.overflowY = "hidden";
+                viewAllBtn.innerHTML = "View All"
+            }
+        })
+
+        const addConsultant = document.querySelector(".add-consultant");
+        const viewUsers = document.querySelector(".view-users");
+        const viewConsultants = document.querySelector(".view-consultants");
+        const viewTickets = document.querySelector(".view-tickets");
+
+        const pages = new Map([
+            ["1", main],
+            ["2", addConsultant],
+            ["3", viewUsers],
+            ["4", viewConsultants],
+            ["5", viewTickets]
+        ]);
+
+        function loadContent(pageNumber) {
+            for (let [key, value] of pages.entries()) {
+                if (pageNumber === key) {
+                    value.style.display = "block";
+                    if(navigation.classList.contains("active")){
+                            value.classList.add("active");
+                    }
+                    else{
+                        value.classList.remove("active");
+                    }
+                } else {
+                    value.style.display = "none";
+                }
+            }
+        }
+
+        function signOut(){
+            location.href="index.html";
+        }
+
+    </script>
+</body>
+
+</html>
