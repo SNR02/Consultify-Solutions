@@ -266,6 +266,13 @@ body {
   border-radius: 20px;
   overflow-y: hidden;
 }
+.details .recentOrders::-webkit-scrollbar{
+  width: 0.3rem;
+}
+.details .recentOrders::-webkit-scrollbar-thumb {
+  background-color: rgb(179, 229, 239);    
+  border-radius: 20px;      
+}
 
 .details .cardHeader {
   display: flex;
